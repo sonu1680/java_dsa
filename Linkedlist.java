@@ -147,20 +147,64 @@ public class Linkedlist {
             temp = temp.next;
             size++;
         }
-        if(idx==size){
-            head=head.next;
+        if (idx == size) {
+            head = head.next;
             return;
         }
         temp = head;
-        int i=1;
-        int idxToFind = size -idx;
+        int i = 1;
+        int idxToFind = size - idx;
         while (i < idxToFind) {
 
             temp = temp.next;
             i++;
         }
-        temp.next=temp.next.next;
-return;    }
+        temp.next = temp.next.next;
+        return;
+    }
+
+    // slow fast approach
+    public Node findMid() {
+
+        Node slow = head; // move by +1
+        Node fast = head; // move by +2
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+
+    }
+
+public boolean checkPalidrome(){
+if(head==null || head.next==null){
+    return true;  //always palidrome as linkedlist is empty
+}
+
+Node mid=findMid();
+Node curr=mid;
+Node prev=null;
+Node next;
+while(curr!=null){
+    next=curr.next;
+    curr.next=prev;
+    prev=curr;
+    curr=next;
+
+}
+
+Node right=prev;
+Node left=head;
+while(right!=null){
+    if(right.data!=left.data){
+        return false;
+    }
+    right=right.next;
+    left=left.next;
+}
+return true;
+}
 
     public static void main(String args[]) {
 
@@ -168,16 +212,16 @@ return;    }
         ll.addFirst(1);
         ll.addLast(2);
         ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
+        ll.addLast(3);
+        ll.addLast(2);
+        ll.addLast(1);
 
         // ll.addMid(2, 23);
         // ll.addMid(0, 234);
         ll.printll();
-        ll.deleteNthNodeFromLast(1);
-        ll.printll();
-
+        System.out.println(ll.checkPalidrome());
         // ll.reverse();
+        // ll.deleteNthNodeFromLast(1);
         // ll.printll();
         // System.out.println("ll data is removed : " + ll.removeFirst());
         // System.out.println("ll last data is removed : " + ll.removeLast());
