@@ -94,7 +94,7 @@ public class Linkedlist {
         } else if (size == 1) {
             int val = tail.data;
             head = tail = null;
-            size=0;
+            size = 0;
             return val;
         }
 
@@ -105,7 +105,7 @@ public class Linkedlist {
 
         }
         val = temp.next.data;
-        tail=temp;
+        tail = temp;
         temp.next = null;
         size--;
 
@@ -113,20 +113,76 @@ public class Linkedlist {
 
     }
 
+    public int itrSearch(int data) {
+        Node temp = head;
+        int index = 0;
+        while (temp != null) {
+            if (temp.data == data) {
+                return index;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return -1;
+    }
+
+    public void reverse() {
+        Node curr = tail = head;
+        Node prev = null;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+
+    }
+
+    public void deleteNthNodeFromLast(int idx) {
+        int size = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            size++;
+        }
+        if(idx==size){
+            head=head.next;
+            return;
+        }
+        temp = head;
+        int i=1;
+        int idxToFind = size -idx;
+        while (i < idxToFind) {
+
+            temp = temp.next;
+            i++;
+        }
+        temp.next=temp.next.next;
+return;    }
+
     public static void main(String args[]) {
 
         Linkedlist ll = new Linkedlist();
         ll.addFirst(1);
         ll.addLast(2);
         ll.addLast(3);
-        ll.addMid(2, 23);
-        ll.addMid(0, 234);
+        ll.addLast(4);
+        ll.addLast(5);
+
+        // ll.addMid(2, 23);
+        // ll.addMid(0, 234);
         ll.printll();
-        // System.out.println("ll data is removed : " + ll.removeFirst());
-        System.out.println("ll last data is removed : " + ll.removeLast());
+        ll.deleteNthNodeFromLast(1);
         ll.printll();
 
-        // System.out.println("size of array is : "+size);
+        // ll.reverse();
+        // ll.printll();
+        // System.out.println("ll data is removed : " + ll.removeFirst());
+        // System.out.println("ll last data is removed : " + ll.removeLast());
+        // System.out.println("size of array is : " + size);
+        // System.out.println(ll.itrSearch(2));
 
     }
 
