@@ -1,3 +1,4 @@
+package old;
 public class sonu {
 
     public static int findMax(int a, int b, int c) {

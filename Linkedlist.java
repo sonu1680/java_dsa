@@ -237,6 +237,8 @@ public boolean isCycle(){
         ll.printll();
 
         System.out.println(ll.isCycle());
+        ll.printll();
+
         // ll.reverse();
         // ll.deleteNthNodeFromLast(1);
         // ll.printll();
