@@ -206,6 +206,21 @@ while(right!=null){
 return true;
 }
 
+
+public boolean isCycle(){
+    Node slow=head;
+    Node fast=head;
+    //added to check if cycyle
+//head.next.next.next.next=head.next.next;
+    while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
+        if(slow==fast){
+            return true
+;        }
+    }
+    return false;
+}
     public static void main(String args[]) {
 
         Linkedlist ll = new Linkedlist();
@@ -218,8 +233,10 @@ return true;
 
         // ll.addMid(2, 23);
         // ll.addMid(0, 234);
+        // System.out.println(ll.checkPalidrome());
         ll.printll();
-        System.out.println(ll.checkPalidrome());
+
+        System.out.println(ll.isCycle());
         // ll.reverse();
         // ll.deleteNthNodeFromLast(1);
         // ll.printll();
